@@ -47,6 +47,14 @@ class Window(QWidget):
         if self.option_warning.isChecked():
             self.message_box = QMessageBox.warning(self, "Retorno", self.text)
 
+    def closeEvent(self, e):
+        e.ignore()
+        question_close = QMessageBox.question(self, "Fechamento",
+        "Deseja realmente fechar a aplicação?",
+        QMessageBox.Yes, QMessageBox.No)
+
+        if question_close == QMessageBox.Yes:
+            exit(0)
 
 root = QApplication(sys.argv)
 app = Window()
